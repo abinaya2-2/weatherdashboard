@@ -1,4 +1,4 @@
- const apiKey = "749bed7165504de72abda544a5aed7a0";; // 🔐 Your actual key
+ const apiKey = "565f737fdb0fae9cf24af5e36b85ccbd"; // 🔐 Your actual key
 
 async function getWeather() {
   const city = document.getElementById("cityInput").value.trim();
@@ -9,8 +9,7 @@ async function getWeather() {
     return;
   }
 
-  const url = `https://home.agromonitoring.com/users/api-keys${encodeURIComponent(city)}&appid=${749bed7165504de72abda544a5aed7a0}&units=metric`;
-
+  const url = `https://history.openweathermap.org/data/2.5/history/city?lat=41.85&lon=-87.65&appid={565f737fdb0fae9cf24af5e36b85ccbd}`
   try {
     const response = await fetch(url);
     const data = await response.json();
