@@ -82,7 +82,7 @@
 
 //eg 3
 
-const apiKey = "565f737fdb0fae9cf24af5e36b85ccbd";
+const apiKey = "565f737fdb0fae9cf24af5e36b85ccbd"; // Your actual API key here
 
 async function getWeather() {
   const city = document.getElementById("cityInput").value.trim();
@@ -95,6 +95,8 @@ async function getWeather() {
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&appid=${apiKey}`;
 
+  result.innerHTML = "<p>Loading...</p>"; // optional loading state
+
   try {
     const response = await fetch(url);
     const data = await response.json();
@@ -104,15 +106,22 @@ async function getWeather() {
       return;
     }
 
+    const description = data.weather[0].description;
+    const capitalizedDesc = description.charAt(0).toUpperCase() + description.slice(1);
+    const icon = data.weather[0].icon;
+    const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+
     result.innerHTML = `
       <h2>${data.name}, ${data.sys.country}</h2>
-      <p>${data.weather[0].description}</p>
+      <img src="${iconUrl}" alt="${capitalizedDesc}" />
+      <p>${capitalizedDesc}</p>
       <p>🌡️ Temp: ${data.main.temp}°C</p>
       <p>💧 Humidity: ${data.main.humidity}%</p>
       <p>🌬️ Wind: ${data.wind.speed} m/s</p>
     `;
   } catch (error) {
-    console.error(error);
-    result.innerHTML = `<p>⚠️ Failed to fetch weather. Try again later.</p>`;
+    console.error("Fetch error:", error);
+    result.innerHTML = `<p>⚠️ Failed to fetch weather. Error: ${error.message}</p>`;
   }
 }
+
