@@ -82,7 +82,7 @@
 
 //eg 3
 
-const apiKey = "565f737fdb0fae9cf24af5e36b85ccbd"; // Your actual API key here
+const apiKey = "565f737fdb0fae9cf24af5e36b85ccbd"; // Make sure this is valid
 
 async function getWeather() {
   const city = document.getElementById("cityInput").value.trim();
@@ -95,7 +95,7 @@ async function getWeather() {
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&units=metric&appid=${apiKey}`;
 
-  result.innerHTML = "<p>Loading...</p>"; // optional loading state
+  result.innerHTML = "<p>Loading...</p>";
 
   try {
     const response = await fetch(url);
@@ -124,4 +124,3 @@ async function getWeather() {
     result.innerHTML = `<p>⚠️ Failed to fetch weather. Error: ${error.message}</p>`;
   }
 }
-
