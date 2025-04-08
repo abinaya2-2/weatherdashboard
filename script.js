@@ -9,8 +9,9 @@ async function getWeather() {
     return;
   }
 
-  const url = `https://history.openweathermap.org/data/2.5/history/city?lat=41.85&lon=-87.65&appid={565f737fdb0fae9cf24af5e36b85ccbd}`
-  try {
+  // const url = `https://history.openweathermap.org/data/2.5/history/city?lat=41.85&lon=-87.65&appid={565f737fdb0fae9cf24af5e36b85ccbd}`
+  const url=`https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={565f737fdb0fae9cf24af5e36b85ccbd}`;
+   try {
     const response = await fetch(url);
     const data = await response.json();
 
